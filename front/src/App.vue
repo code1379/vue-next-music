@@ -1,10 +1,13 @@
 <script setup>
 import MHeader from '@/components/header/header.vue'
+import Tab from '@/components/tab/tab.vue'
 
 </script>
 
 <template>
   <MHeader/>
+  <Tab/>
+  <router-view/>
 </template>
 
 <style scoped>
