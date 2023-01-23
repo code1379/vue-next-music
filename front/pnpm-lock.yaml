@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@better-scroll/core': ^2.5.0
+  '@better-scroll/observe-dom': ^2.5.0
   '@better-scroll/slide': ^2.5.0
   '@rushstack/eslint-patch': ^1.1.4
   '@vitejs/plugin-vue': ^4.0.0
@@ -15,15 +16,18 @@ specifiers:
   vite: ^4.0.0
   vue: ^3.2.45
   vue-router: ^4.1.6
+  vue3-lazy: 1.0.0-alpha.1
 
 dependencies:
   '@better-scroll/core': 2.5.0
+  '@better-scroll/observe-dom': 2.5.0
   '@better-scroll/slide': 2.5.0
   axios: 1.2.3
   pinia: 2.0.29_vue@3.2.45
   sass: 1.57.1
   vue: 3.2.45
   vue-router: 4.1.6_vue@3.2.45
+  vue3-lazy: 1.0.0-alpha.1_vue@3.2.45
 
 devDependencies:
   '@rushstack/eslint-patch': 1.2.0
@@ -63,6 +67,12 @@ packages:
     resolution: {integrity: sha512-+3aKf8T3kUl4Gj1M7NKV3fNFhsrBpTWwHoDClkXVmQ8S3TxMMHf6Kyw6l1zKsg4r+9ukW5lDDkyif7/gY76qXQ==}
     dependencies:
       '@better-scroll/shared-utils': 2.5.0
+    dev: false
+
+  /@better-scroll/observe-dom/2.5.0:
+    resolution: {integrity: sha512-E7wZooGYN9BKcJ+/Tto+GnDN5KNoXlnnde/0Vs9MuQqvI73neFpIcHD3MvX99DaGCpV3cOQlmCw0dmL9q+jEow==}
+    dependencies:
+      '@better-scroll/core': 2.5.0
     dev: false
 
   /@better-scroll/shared-utils/2.5.0:
@@ -1469,6 +1479,15 @@ packages:
       '@vue/runtime-dom': 3.2.45
       '@vue/server-renderer': 3.2.45_vue@3.2.45
       '@vue/shared': 3.2.45
+
+  /vue3-lazy/1.0.0-alpha.1_vue@3.2.45:
+    resolution: {integrity: sha512-dpjpKK4DC5q+wZVtS/VY3X6pYBJHxRmYanr20s39RB6o6fvbneQ/DNuz37bipYfEdrEvbSZ95Y2SCexuznQNrQ==}
+    engines: {node: '>=6.0.0'}
+    peerDependencies:
+      vue: ^3.0.0-alpha.9
+    dependencies:
+      vue: 3.2.45
+    dev: false
 
   /which/2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
