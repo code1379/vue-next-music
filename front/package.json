@@ -9,6 +9,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@better-scroll/core": "^2.5.0",
+    "@better-scroll/slide": "^2.5.0",
     "axios": "^1.2.3",
     "pinia": "^2.0.28",
     "sass": "^1.57.1",

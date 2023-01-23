@@ -14,12 +14,12 @@ const csrfProtection = csrf({
   checkPathReg: /^\/api/,
 });
 app.use(cookieParser());
-app.use(csrfProtection);
+// app.use(csrfProtection);
 
-app.get('/', function (req, res, next) {
-  res.cookie('XSRF-TOKEN', req.csrfToken());
-  return next();
-});
+// app.get('/', function (req, res, next) {
+//   res.cookie('XSRF-TOKEN', req.csrfToken());
+//   return next();
+// });
 
 registerRouter(app);
 
