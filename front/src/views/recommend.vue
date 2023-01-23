@@ -1,5 +1,5 @@
 <template>
-  <div  class="recommend">
+  <div  class="recommend" v-loading:[loadingText]="loading">
     <Scroll :click="true" class="recommend-content">
       <div>
         <!--  scroll 只针对第一个子节点生效  -->
@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="recommend-list">
-          <h1 class="title">热门歌单推荐</h1>
+          <h1 class="title" v-show="!loading">热门歌单推荐</h1>
           <ul>
             <template v-for="album in albumsRef" :key="album.id">
               <li class="item">
@@ -34,7 +34,7 @@
 import { getRecommend } from "@/service/recommend";
 import Slider from "@/components/base/slider/slider.vue";
 import Scroll from "@/components/base/scroll/scroll.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const slidersRef = ref([])
 const albumsRef = ref([])
@@ -45,6 +45,8 @@ const initGetData = async() => {
   albumsRef.value = albums
 }
 
+const loading = computed(() => !slidersRef.value.length && !albumsRef.value.length)
+const loadingText = '正在载入。。。'
 initGetData()
 </script>
 
