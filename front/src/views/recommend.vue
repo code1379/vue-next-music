@@ -14,7 +14,8 @@
             <template v-for="album in albumsRef" :key="album.id">
               <li class="item">
                 <div class="icon">
-                  <img :src="album.pic" alt="">
+<!--                  <img :src="album.pic" alt="">-->
+                  <img v-lazy ="album.pic" alt="">
                 </div>
                 <div class="text">
                   <h2 class="name">{{album.username}}</h2>
