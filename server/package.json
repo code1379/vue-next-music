@@ -15,7 +15,7 @@
     "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
     "js-base64": "^3.7.4",
-    "pinyin": "3.0.0-alpha.5",
+    "pinyin": "2.11.2",
     "xsrf": "^1.0.0"
   }
 }

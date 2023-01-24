@@ -10,7 +10,7 @@
 <script setup>
 import { ref } from "vue";
 
-const title = ref("")
+const title = ref("正在载入。。。")
 const setTitle = (val) => {
   title.value = val
 }
