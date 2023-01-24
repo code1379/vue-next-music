@@ -1,6 +1,6 @@
 <template>
-  <Scroll class="index-list">
-    <ul class="groups">
+  <Scroll class="index-list" :probe-type="3" @scroll="onScroll">
+    <ul class="groups" ref="groupsRef">
       <template v-for="group in groups" :key="group.title">
         <li class="group">
           <h2 class="title">{{ group.title }}</h2>
@@ -15,18 +15,27 @@
         </li>
       </template>
     </ul>
+    <li class="fixed-title-wrapper">
+      <div class="fixed-title">
+        {{fixedTitle}}
+      </div>
+    </li>
   </Scroll>
 </template>
 
 <script setup>
 import Scroll from "@/components/base/scroll/scroll.vue";
+import useFixed from "@/components/base/index-list/use-fixed";
 
-defineProps({
+const props = defineProps({
   groups: {
     type: Array,
     default: () => []
   }
 })
+
+// 最外层包裹的ref 用于获取整个列表的高度
+const { groupsRef, onScroll, fixedTitle} = useFixed(props)
 </script>
 
 <style lang="scss" scoped>
@@ -63,6 +72,25 @@ defineProps({
           color: $color-text-l;
         }
       }
+    }
+
+  }
+  .fixed-title-wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    &::marker {
+      display: none !important;
+      height: 0;
+    }
+    .fixed-title {
+      height: 30px;
+      line-height: 30px;
+      padding-left: 20px;
+      font-size: $font-size-small;
+      color: $color-text-l;
+      background-color: $color-background-highlight;
     }
   }
 }

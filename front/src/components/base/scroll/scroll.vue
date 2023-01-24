@@ -12,14 +12,20 @@ const props = defineProps({
   click: {
     type: Boolean,
     default: true
+  },
+  probeType: {
+    type: Number,
+    default: 0
   }
 })
+
+const emits = defineEmits(['scroll'])
 
 const attrs = useAttrs();
 console.log("attrs", attrs);
 const rootRef = ref(null)
 
-useScroll(rootRef, props)
+useScroll(rootRef, props, emits)
 </script>
 
 <style lang="scss" scoped>
