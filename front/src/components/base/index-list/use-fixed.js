@@ -4,13 +4,29 @@
 import { ref, watch, nextTick, computed } from "vue";
 
 export default function useFixed(props){
+	const TITLE_HEIGHT = 30
 	const groupsRef = ref(null)
 	const listHeights = ref([])
 	const scrollY = ref(0)
 	const currentIndex = ref(0)
+	// 每个组的顶部距离顶部的距离，如果距离足够小就偏移
+	// 这个组区间的底部，就是下个组区间的顶部
+	const distance = ref(0)
+	
 	const fixedTitle = computed(() => {
+		if(scrollY.value < 0) {
+			return ""
+		}
 		const group = props.groups[currentIndex.value]
 		return group?.title  || ""
+	})
+	
+	const fixedStyle = computed(( ) => {
+		const distanceValue = distance.value
+		const diff = (distanceValue>0 && distanceValue < TITLE_HEIGHT) ? distanceValue - TITLE_HEIGHT : 0;
+		return {
+			transform: `translate3d(0, ${diff}px, 0)`
+		}
 	})
 	
 	watch(() => props.groups, async() => {
@@ -26,6 +42,7 @@ export default function useFixed(props){
 			const heightBottom = listHeightsValue[i + 1]
 			if(newY > heightTop && newY < heightBottom) {
 				currentIndex.value = i
+				distance.value = heightBottom - newY
 			}
 		}
 	})
@@ -48,6 +65,8 @@ export default function useFixed(props){
 	return {
 		groupsRef,
 		onScroll,
-		fixedTitle
+		fixedTitle,
+		distance,
+		fixedStyle
 	}
 }

@@ -15,7 +15,7 @@
         </li>
       </template>
     </ul>
-    <li class="fixed-title-wrapper">
+    <li class="fixed-title-wrapper" :style="fixedStyle" v-show="fixedTitle">
       <div class="fixed-title">
         {{fixedTitle}}
       </div>
@@ -35,7 +35,7 @@ const props = defineProps({
 })
 
 // 最外层包裹的ref 用于获取整个列表的高度
-const { groupsRef, onScroll, fixedTitle} = useFixed(props)
+const { groupsRef, onScroll, fixedTitle, fixedStyle} = useFixed(props)
 </script>
 
 <style lang="scss" scoped>
