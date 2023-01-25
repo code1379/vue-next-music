@@ -25,7 +25,11 @@ const attrs = useAttrs();
 console.log("attrs", attrs);
 const rootRef = ref(null)
 
-useScroll(rootRef, props, emits)
+const scroll = useScroll(rootRef, props, emits)
+
+defineExpose({
+  scroll,
+})
 </script>
 
 <style lang="scss" scoped>

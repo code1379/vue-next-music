@@ -1,5 +1,5 @@
 <template>
-  <Scroll class="index-list" :probe-type="3" @scroll="onScroll">
+  <Scroll class="index-list" :probe-type="3" @scroll="onScroll" ref="scrollRef">
     <ul class="groups" ref="groupsRef">
       <template v-for="group in groups" :key="group.title">
         <li class="group">
@@ -15,17 +15,28 @@
         </li>
       </template>
     </ul>
-    <li class="fixed-title-wrapper" :style="fixedStyle" v-show="fixedTitle">
+    <div class="fixed-title-wrapper" :style="fixedStyle" v-show="fixedTitle">
       <div class="fixed-title">
         {{fixedTitle}}
       </div>
-    </li>
+    </div>
+    <div class="shortcut" @touchstart.stop.prevent="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove" @touchend.stop.prevent="onShortcutTouchEnd">
+      <ul>
+        <template v-for="(title, index) in shortcutList" :key="title">
+          <li class="item"  :class="{'current': index === currentIndex}" :data-index="index">
+            {{title}}
+          </li>
+        </template>
+      </ul>
+    </div>
   </Scroll>
 </template>
 
 <script setup>
 import Scroll from "@/components/base/scroll/scroll.vue";
 import useFixed from "@/components/base/index-list/use-fixed";
+import useShortcut from "@/components/base/index-list/use-shortcut";
+import { ref } from "vue";
 
 const props = defineProps({
   groups: {
@@ -33,9 +44,13 @@ const props = defineProps({
     default: () => []
   }
 })
+const scrollRef = ref(null)
 
 // 最外层包裹的ref 用于获取整个列表的高度
-const { groupsRef, onScroll, fixedTitle, fixedStyle} = useFixed(props)
+const { groupsRef, onScroll, fixedTitle, fixedStyle, currentIndex} = useFixed(props)
+const { shortcutList,onShortcutTouchStart,
+  onShortcutTouchMove,
+  onShortcutTouchEnd } = useShortcut(props, groupsRef, scrollRef)
 </script>
 
 <style lang="scss" scoped>
@@ -91,6 +106,24 @@ const { groupsRef, onScroll, fixedTitle, fixedStyle} = useFixed(props)
       font-size: $font-size-small;
       color: $color-text-l;
       background-color: $color-background-highlight;
+    }
+  }
+  .shortcut {
+    position: fixed;
+    right: 5px;
+    transform: translateY(-50%);
+    top: 50%;
+    background-color: $color-background-d;
+    font-size: $font-size-small;
+    padding: 8px 0;
+    border-radius: 5px;
+    .item {
+      text-align: center;
+      line-height: 18px;
+      width: 20px;
+      &.current {
+        color: $color-theme;
+      }
     }
   }
 }
