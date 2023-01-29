@@ -13,7 +13,13 @@ const router = createRouter({
     },
     {
       path: "/singer",
-      component: () => import("@/views/singer.vue")
+      component: () => import("@/views/singer.vue"),
+      children: [
+        {
+          path: ":mid",
+          component:() => import("@/views/singer-detail.vue")
+        }
+      ]
     },
     {
       path: "/search",

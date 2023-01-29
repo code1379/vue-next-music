@@ -6,7 +6,7 @@
           <h2 class="title">{{ group.title }}</h2>
           <ul>
             <template v-for="singer in group.list" :key="singer.id">
-              <li class="item">
+              <li class="item" @click="onItemClick(singer)">
                 <img class="avatar" v-lazy="singer.pic" alt="">
                 <span class="name">{{ singer.name }}</span>
               </li>
@@ -44,6 +44,9 @@ const props = defineProps({
     default: () => []
   }
 })
+
+// 选择单个歌手时向父组件发送 select 事件，父组件可以通过监听 select 事件来获取到子组件发送的数据
+const emits = defineEmits(["select"])
 const scrollRef = ref(null)
 
 // 最外层包裹的ref 用于获取整个列表的高度
@@ -51,6 +54,10 @@ const { groupsRef, onScroll, fixedTitle, fixedStyle, currentIndex} = useFixed(pr
 const { shortcutList,onShortcutTouchStart,
   onShortcutTouchMove,
   onShortcutTouchEnd } = useShortcut(props, groupsRef, scrollRef)
+
+function onItemClick(singer) {
+  emits("select", singer)
+}
 </script>
 
 <style lang="scss" scoped>
