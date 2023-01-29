@@ -6,8 +6,8 @@
 
 <script setup>
 
-import { getSingerDetail } from "@/service/singer";
-
+import { getSingerDetail, } from "@/service/singer";
+import { processSongs } from "@/service/song";
 const props = defineProps({
   singer: {
     type: Object,
@@ -17,7 +17,8 @@ const props = defineProps({
 
 async function initData() {
   const result = await getSingerDetail(props.singer)
-  console.log(result);
+  const songsUrl = await processSongs(result.songs)
+  console.log("songsUrl", songsUrl)
 }
 
 initData()
