@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref, useAttrs } from "vue";
+import { ref } from "vue";
 import useScroll from "@/components/base/scroll/use-scroll";
 
 const props = defineProps({
@@ -21,8 +21,6 @@ const props = defineProps({
 
 const emits = defineEmits(['scroll'])
 
-const attrs = useAttrs();
-console.log("attrs", attrs);
 const rootRef = ref(null)
 
 const scroll = useScroll(rootRef, props, emits)
