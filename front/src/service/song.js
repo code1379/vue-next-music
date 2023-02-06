@@ -19,7 +19,7 @@ export function processSongs(songs) {
     //   return song.url.indexOf("vkey") > -1
     // })
     return songs.map(song => {
-      song.url = 'https://isure.stream.qqmusic.qq.com/C400000hRGWA0NFIF1.m4a?guid=6919564652&vkey=A43D2231EC34063BF8B628D12ACA0131ADB0C7BCEA0AEAA4D4447CA54F316418E78792612AB9B21FE45B04574EA32F23A330922C260D08EB&uin=&fromtag=123032';
+      song.url = 'http://locahost:9002/我记得.mp3';
       return song
     })
   })
